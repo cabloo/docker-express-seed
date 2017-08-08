@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker push synergycp/bm-rtg

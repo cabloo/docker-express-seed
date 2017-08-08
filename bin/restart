@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+NAME=synergycp_$(basename $(pwd))
+REPLICAS=1
+docker service scale $NAME=0
+docker service scale $NAME=$REPLICAS
