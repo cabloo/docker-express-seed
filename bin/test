@@ -1,20 +1,23 @@
 #!/usr/bin/env bash
 
-NAME=scp-bm-rtg-test
-docker exec $NAME echo ""
+CONT=scp-dns-http-control-bind
+NAME="$CONT-test"
+docker exec "$NAME" echo "" 2>> /dev/null
 STATUS=$?
 OP=$1
 
+mkdir -p node_modules
+
 while [ "$STATUS" -gt 0 ] || [ "$OP" = "restart" ]; do
     OP=
-    docker rm -f $NAME
+    docker rm -f "$NAME"
     docker run \
         -v $(pwd)/node_modules:/api/node_modules \
         -v $(pwd)/modules:/api/src/modules \
-        --name $NAME \
-        synergycp/bm-rtg &
+        --name "$NAME" \
+        "$CONT" &
     STATUS=$?
     sleep 5
 done
 
-docker exec $NAME /api/bin/test
+docker exec "$NAME" /api/bin/test
