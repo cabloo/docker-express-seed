@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-CONT=scp-dns-http-control-bind
-NAME="$CONT-test"
+CONT=synergycp/dns-http-control-bind
+NAME="scp-dns-http-control-bind-test"
 docker exec "$NAME" echo "" 2>> /dev/null
 STATUS=$?
 OP=$1
